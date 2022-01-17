@@ -1,0 +1,28 @@
+{% if latest_question_list %}
+
+<ul>
+  {% for question in latest_question_list %}
+
+  <li>
+    {% comment %}
+    <!-- From: <a href="/polls/question/{{question.id}}/"> {{question.question_text}} </a> -->
+    <!-- To:  -->
+    <!-- From: <a href="{% url 'detail' question.id %}">{{question.question_text}}</a> -->
+    <!-- This method uses the url module, and the path's name member -->
+    <!-- To: -->
+    {% endcomment %}
+
+    <a href="{% url 'polls:detail' question.id %}"
+      >{{question.question_text}}</a
+    >
+    <!-- This method uses the app namespace along with the path's name member, found via the urls module -->
+  </li>
+
+  {% endfor %}
+</ul>
+
+{% else %}
+
+<p>No polls are available.</p>
+
+{% endif %}
